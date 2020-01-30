@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:l="clr-namespace:DemosKratos.DataForm.Renderers"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.StringRenderer">
+    <ContentView.Resources>
+        <h:BoolNotConverter x:Key="Not" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <l:Section Text="{Binding DisplayName}"
+                   SidePadding="{Binding SidePadding}"
+                   IsEnabled="{Binding IsEnabled}">
+            <l:Section.Control>
+                <Grid>
+                    <Label Text="{Binding Value}"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           Margin="3, 0, 0, 0"
+                           IsVisible="{Binding IsEditable, Converter={StaticResource Not}}"/>
+
+                    <Entry Text="{Binding Value}"
+                           VerticalOptions="Center"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           Margin="0"
+                           Placeholder="{Binding Placeholder}"
+                           IsEnabled="{Binding IsEnabled}"
+                           IsVisible="{Binding IsEditable}" />
+                </Grid>
+            </l:Section.Control>
+        </l:Section>
+    </ContentView.Content>
+</ContentView>

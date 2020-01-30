@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:l="clr-namespace:DemosKratos.DataForm.Renderers"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.DateTimeRenderer">
+    <ContentView.Resources>
+        <h:BoolNotConverter x:Key="Not" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <l:Section Text="{Binding DisplayName}"
+                   SidePadding="{Binding SidePadding}"
+                   IsEnabled="{Binding IsEnabled}">
+            <l:Section.Control>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <BoxView Color="Transparent"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="Fill"
+                             VerticalOptions="Fill"
+                             Grid.Column="0">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Date_Tapped" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+
+                    <Label x:Name="DateLabel"
+                           Grid.Column="0"
+                           VerticalOptions="Center"
+                           Margin="3, 0, 0, 0"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           IsVisible="{Binding IsEnabled, Converter={StaticResource Not}}"/>
+                    
+                    <Entry x:Name="DateEntry"
+                           Grid.Column="0"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           Placeholder="Дата"
+                           IsVisible="{Binding IsEnabled}"
+                           VerticalOptions="Center"
+                           Margin="0, 0, 7, 0"
+                           InputTransparent="True">
+                    </Entry>
+                    
+                    <BoxView Color="Transparent"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="Fill"
+                             VerticalOptions="Fill"
+                             Grid.Column="1">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Time_Tapped" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+
+                    <Label x:Name="TimeLabel"
+                           Grid.Column="1"
+                           VerticalOptions="Center"
+                           Margin="7, 0, 0, 0"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           IsVisible="{Binding IsEnabled, Converter={StaticResource Not}}"/>
+                    
+                    <Entry x:Name="TimeEntry"
+                           Grid.Column="1"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           Margin="7, 0, 0, 0"
+                           IsVisible="{Binding IsEnabled}"
+                           VerticalOptions="Center"
+                           Placeholder="Время"
+                           InputTransparent="True">
+                    </Entry>
+                </Grid>
+            </l:Section.Control>
+        </l:Section>
+    </ContentView.Content>
+</ContentView>

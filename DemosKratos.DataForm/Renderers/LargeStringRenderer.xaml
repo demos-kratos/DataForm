@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:l="clr-namespace:DemosKratos.DataForm.Renderers"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             xmlns:v="clr-namespace:DemosKratos"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.LargeStringRenderer">
+    <ContentView.Resources>
+        <h:BoolNotConverter x:Key="Not" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid ColumnSpacing="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding SidePadding}" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="{Binding SidePadding}" />
+            </Grid.ColumnDefinitions>
+
+            <v:ResizableEditor Grid.Column="1"
+                               Placeholder="{Binding DisplayName}"
+                               Text="{Binding Value}"
+                               IsEnabled="{Binding IsEnabled}"
+                               IsVisible="{Binding IsEditable}"/>
+
+            <Label Grid.Column="1"
+                   Text="{Binding Value}"
+                   IsVisible="{Binding IsEditable, Converter={StaticResource Not}}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

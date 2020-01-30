@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:l="clr-namespace:DemosKratos.DataForm.Renderers"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.TimeSpanRenderer">
+    <ContentView.Resources>
+        <h:BoolNotConverter x:Key="Not" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <l:Section Text="{Binding DisplayName}"
+                   SidePadding="{Binding SidePadding}"
+                   IsEnabled="{Binding IsEnabled}">
+            <l:Section.Control>
+                <Grid>
+                    <BoxView Color="Transparent"
+                             BackgroundColor="Transparent"
+                             HorizontalOptions="Fill"
+                             HeightRequest="40">
+                        <BoxView.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </BoxView.GestureRecognizers>
+                    </BoxView>
+
+                    <Label x:Name="TimeLabel"
+                           VerticalOptions="Center"
+                           Margin="3, 0, 0, 0"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           IsVisible="{Binding IsEnabled, Converter={StaticResource Not}}"/>
+
+                    <Entry x:Name="TimeEntry"
+                           FontSize="{StaticResource DataFormFontSize}"
+                           Placeholder="{Binding Placeholder}"
+                           IsVisible="{Binding IsEnabled}"
+                           Margin="0"
+                           VerticalOptions="Center"
+                           InputTransparent="True">
+                    </Entry>
+                </Grid>
+            </l:Section.Control>
+        </l:Section>
+    </ContentView.Content>
+</ContentView>

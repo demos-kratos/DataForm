@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="DemosKratos.SvgButton"
+             x:Name="this">
+    <ContentView.Content>
+        <Grid>
+            <ffsvg:SvgCachedImage Source="{Binding Source={Reference this}, Path=Source}"
+                                  HeightRequest="32"
+                                  WidthRequest="32" />
+
+            <Label Text="{Binding Source={Reference this}, Path=Text}"
+                   TextColor="{Binding Source={Reference this}, Path=TextColor}"
+                   FontSize="{Binding Source={Reference this}, Path=FontSize}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+            </Grid.GestureRecognizers>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

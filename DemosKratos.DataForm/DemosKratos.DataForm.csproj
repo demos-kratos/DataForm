@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="SvgButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Renderers\BoolRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\DateRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\DateTimeRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\LargeStringRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\OptionRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\Section.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\StringRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Renderers\TimeSpanRenderer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+
+</Project>

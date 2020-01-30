@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:l="clr-namespace:DemosKratos.DataForm.Renderers"
+             xmlns:c="clr-namespace:DemosKratos"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.OptionRenderer">
+    <ContentView.Resources>
+        <h:BoolColorConverter x:Key="EnabledConverter" TrueColor="Black" FalseColor="Gray" />
+        <h:BoolNotConverter x:Key="Not" />
+        <h:StringTupleRightValueConverter x:Key="Right" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <l:Section IsEnabled="{Binding IsEnabled}"
+                   SidePadding="{Binding SidePadding}"
+                   Text="{Binding DisplayName}">
+            <l:Section.Control>
+                <Grid>
+                    <Label Text="{Binding Value, Converter={StaticResource Right}}" 
+                           LineBreakMode="WordWrap"
+                           VerticalOptions="Center"
+                           HorizontalOptions="End"
+                           HorizontalTextAlignment="End"
+                           IsVisible="{Binding IsOptionSelected}"
+                           TextColor="{Binding IsEnabled, Converter={StaticResource EnabledConverter}}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SelectCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                    <c:SvgButton Source="resource://DmeControls.Resources.Plus.svg?assembly=DmeControls"
+                                 HorizontalOptions="End"
+                                 IsVisible="{Binding IsOptionSelected, Converter={StaticResource Not}}"
+                                 Command="{Binding SelectCommand}"/>
+                </Grid>
+            </l:Section.Control>
+        </l:Section>
+    </ContentView.Content>
+</ContentView>

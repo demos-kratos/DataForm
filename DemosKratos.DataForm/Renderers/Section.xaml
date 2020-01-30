@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:h="clr-namespace:DemosKratos.Helpers"
+             mc:Ignorable="d"
+             x:Class="DemosKratos.DataForm.Renderers.Section"
+             x:Name="this"
+             Margin="0"
+             Padding="0"
+             HeightRequest="40">
+    <ContentView.Resources>
+        <h:BoolColorConverter x:Key="EnabledConverter" TrueColor="Black" FalseColor="Gray" />
+        <h:BoolColorConverter x:Key="EnabledBgConverter" TrueColor="Transparent" FalseColor="{Binding Source={Reference this}, Path=DisabledColor}" />
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid BackgroundColor="{Binding Source={Reference this}, Path=IsEnabled, Converter={StaticResource EnabledBgConverter}}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{Binding Source={Reference this}, Path=SidePadding}" />
+                <ColumnDefinition Width="4*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="{Binding Source={Reference this}, Path=SidePadding}" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Column="1"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   Text="{Binding Source={Reference this}, Path=Text}"
+                   TextColor="{Binding Source={Reference this}, Path=IsEnabled, Converter={StaticResource EnabledConverter}}"/>
+
+            <ContentView Grid.Column="2"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="Center"
+                         Content="{Binding Source={Reference this}, Path=Control}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
